@@ -10,21 +10,22 @@ import javax.swing.JOptionPane;
  * @author Fabregas
  */
 public class ControladorInterfazMaestra implements ActionListener {
-
+    
     InterfazMaestraUI interfazMaestra;
-
+    
     public ControladorInterfazMaestra() {
         interfazMaestra = new InterfazMaestraUI();
+        interfazMaestra.nuevaEmpresa.addActionListener(this);
         interfazMaestra.borrarAuditoria.addActionListener(this);
         interfazMaestra.cerrarSesion.addActionListener(this);
         interfazMaestra.nuevoPais.addActionListener(this);
         interfazMaestra.nuevoEstado.addActionListener(this);
         interfazMaestra.salir.addActionListener(this);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
         switch (e.getActionCommand()) {
             case "cerrarSesion":
                 JOptionPane.showMessageDialog(interfazMaestra, "Hasta Pronto!");
@@ -45,8 +46,11 @@ public class ControladorInterfazMaestra implements ActionListener {
                     interfazMaestra.dispose();
                 }
                 break;
+            case "nuevaEmpresa":
+                ControladorEmpresaUI cem = new ControladorEmpresaUI();
+                break;
         }
-
+        
     }
-
+    
 }
