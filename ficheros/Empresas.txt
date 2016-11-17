@@ -1,1 +1,3 @@
-
+1-cif-email-dir-telefono-Activo
+2-cif2-email2-dir-telefono2-Inactivo
+3-1234567-empresa3@empresa3.com-Calle Empresa 3-987654321-Desconocido

@@ -1,8 +1,12 @@
 package com.np.dam2.dii.grupo2.controlador;
 
+import com.np.dam2.dii.grupo2.modelo.dao.EmpresaDAO;
+import com.np.dam2.dii.grupo2.modelo.dao.factory.EmpresaDAOFactory;
 import com.np.dam2.dii.grupo2.vista.InterfazMaestraUI;
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +25,7 @@ public class ControladorInterfazMaestra implements ActionListener {
         interfazMaestra.nuevoPais.addActionListener(this);
         interfazMaestra.nuevoEstado.addActionListener(this);
         interfazMaestra.salir.addActionListener(this);
+        interfazMaestra.listarEmpresas.addActionListener(this);
     }
     
     @Override
@@ -48,6 +53,13 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "nuevaEmpresa":
                 ControladorEmpresaUI cem = new ControladorEmpresaUI();
+                break;
+            case "listarEmpresas":
+                EmpresaDAO dao = EmpresaDAOFactory.getInstance().createEmpresaDAO();
+                LinkedList lista = (LinkedList) dao.listar();
+                String[] strArray;
+                strArray = (String[]) lista.toArray();
+                InterfazMaestraUI.columnNames = (strArray);
                 break;
         }
         

@@ -25,15 +25,27 @@ import java.util.logging.Logger;
  */
 public class EquipoDAO implements IEquipoDAO {
 
+    
     @Override
     public void guardar(EquipoDTO equipo) {
         File f = new File("ficheros/Equipos.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+            
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(equipo.getIdEquipo() + "-" + equipo.getNombre() + "-" + equipo.getDescripcion() + "-" + equipo.getSistemaOperativo() + "-" + equipo.getCantidad() + "-" + equipo.getPrecio() + "-" + equipo.getStatus());
+            bw.write(id+ "-" + equipo.getNombre()+ "-" + equipo.getDescripcion()+ "-" + equipo.getSistemaOperativo()+ "-" + equipo.getCantidad()+ "-" + equipo.getPrecio()+ "-" + equipo.getStatus());
         } catch (IOException ex) {
             Logger.getLogger(EquipoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

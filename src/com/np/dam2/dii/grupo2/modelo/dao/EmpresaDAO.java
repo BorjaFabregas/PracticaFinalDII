@@ -31,9 +31,20 @@ public class EmpresaDAO implements IEmpresaDAO {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+            
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(empresa.getIdEmpresa() + "-" + empresa.getRifEmpresa() + "-" + empresa.getEmail() + "-" + empresa.getDireccion() + "-" + empresa.getMovil() + "-" + empresa.getStatus() + "\n");
+            bw.write(id + "-" + empresa.getRifEmpresa() + "-" + empresa.getEmail() + "-" + empresa.getDireccion() + "-"  + empresa.getMovil() + "-" + empresa.getStatus());
         } catch (IOException ex) {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

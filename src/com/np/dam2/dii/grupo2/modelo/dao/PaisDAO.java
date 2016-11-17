@@ -25,24 +25,31 @@ import java.util.logging.Logger;
  */
 public class PaisDAO implements IPaisDAO {
 
-    @Override
+   @Override
     public void guardar(PaisDTO pais) {
-         File f = new File("ficheros/Paises.txt");
+        File f = new File("ficheros/Paises.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
+
         try {
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
+
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(pais.getIdPais()+ "-" + pais.getNombre());
+            bw.write(id + "-" + pais.getNombre()+"\n");
+            bw.close();
+            fw.close();
         } catch (IOException ex) {
             Logger.getLogger(PaisDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                bw.close();
-                fw.close();  
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
         }
     }
 

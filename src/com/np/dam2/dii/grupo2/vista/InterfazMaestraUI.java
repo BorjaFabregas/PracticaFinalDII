@@ -23,9 +23,9 @@ import java.awt.Font;
 
 public class InterfazMaestraUI extends JFrame {
     
-    public final String[] columnNames = {"ID", "CIF", "Email", "Direccion", "Telefono", "Movil", "Status"};
+    public static String[] columnNames = {"ID", "CIF", "Email", "Direccion", "Telefono", "Movil", "Status"};
     // -
-    public final String[][] data = {
+    public static String[][] data = {
         {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
         {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
         {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
@@ -108,6 +108,7 @@ public class InterfazMaestraUI extends JFrame {
     public JMenu menuSalir;
     public JMenuItem cerrarSesion;
     public JMenuItem salir;
+    public static JPanel north, center, south;
     
     public InterfazMaestraUI() {
         
@@ -115,7 +116,7 @@ public class InterfazMaestraUI extends JFrame {
         
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        JPanel north = new JPanel();
+        north = new JPanel();
         north.setBorder(new EmptyBorder(0, 5, 0, 5));
         getContentPane().add(north, BorderLayout.NORTH);
         north.setLayout(new BorderLayout(0, 0));
@@ -133,7 +134,7 @@ public class InterfazMaestraUI extends JFrame {
         user.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         north.add(user, BorderLayout.WEST);
         
-        JPanel center = new JPanel();
+        center = new JPanel();
         getContentPane().add(center, BorderLayout.CENTER);
         GridBagLayout gbl_center = new GridBagLayout();
         center.setLayout(gbl_center);
@@ -145,11 +146,12 @@ public class InterfazMaestraUI extends JFrame {
         gbc_lblFoto.gridy = 0;
         center.add(lblFoto, gbc_lblFoto);
         
-        JPanel south = new JPanel();
+        south = new JPanel();
         south.setBorder(new EmptyBorder(0, 0, 10, 0));
         getContentPane().add(south, BorderLayout.SOUTH);
         
         table = new JTable(data, columnNames);
+        
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(690, 200));
         south.add(scrollPane);

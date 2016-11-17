@@ -31,9 +31,20 @@ public class ContactoDAO implements IContactoDAO {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+            
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(contacto.getIdPContactos() + "-" + contacto.getCedula() + "-" + contacto.getNombre() + "-" + contacto.getEmail() + "-" + contacto.getDireccion() + "-" + contacto.getTelefono() + "-" + contacto.getMovil() + "-" + contacto.getStatus());
+            bw.write(id+ "-" + contacto.getCedula()+ "-" + contacto.getNombre() + "-" + contacto.getEmail()+ "-" + contacto.getDireccion()+ "-" + contacto.getTelefono()+ "-" + contacto.getMovil()+ "-" + contacto.getStatus());
         } catch (IOException ex) {
             Logger.getLogger(AuditoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
