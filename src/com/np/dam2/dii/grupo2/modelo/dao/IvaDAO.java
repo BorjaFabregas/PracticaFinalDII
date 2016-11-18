@@ -26,14 +26,26 @@ import java.util.logging.Logger;
  */
 public class IvaDAO implements IIvaDAO{
 
+    @Override
     public void guardar(IvaDTO iva) {
-         File f = new File("ficheros/Ivas.txt");
+         File f = new File("Ivas.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+            
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(iva.getIdIva()+ "-" + iva.getPorcentajeIva()+"-"+iva.getStatus());
+            bw.write(id+ "-" + iva.getPorcentajeIva()+"-"+iva.getStatus());
         } catch (IOException ex) {
             Logger.getLogger(IvaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -45,6 +57,8 @@ public class IvaDAO implements IIvaDAO{
             }
         }
     }
+
+
 
     @Override
     public IvaDTO leer(String idIva) {

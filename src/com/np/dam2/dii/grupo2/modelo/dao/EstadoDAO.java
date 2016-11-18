@@ -18,6 +18,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,21 +31,58 @@ public class EstadoDAO implements IEstadoDAO {
         File f = new File("ficheros/Estados.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
+        boolean hayFK = false;
+
         try {
-            fw = new FileWriter(f, true);
-            bw = new BufferedWriter(fw);
-            bw.write(estado.getIdEstado() + "-" + estado.getNombre());
+            //Buscar el pais asociado
+            FileReader fr = new FileReader(new File("ficheros/Paises.txt"));
+            BufferedReader br = new BufferedReader(fr);
+            int idFK = 1;
+            while (br.readLine() != null) {
+                if (idFK == Integer.parseInt(estado.getIdPaisFK())) {
+                    hayFK = true;
+                }
+                idFK++;
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+        }
+        if (hayFK) {
             try {
-                bw.close();
-                fw.close();
-            } catch (IOException io) {
-                io.printStackTrace();
+
+                //Obtencion ultimo id y autoincremento
+                int id = 1;
+                String str;
+                try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                    while ((str = br.readLine()) != null) {
+                        id++;
+                    }
+                    br.close();
+                }
+
+                fw = new FileWriter(f, true);
+                bw = new BufferedWriter(fw);
+                bw.write(id + "-" + estado.getNombre() + "-" + estado.getIdPaisFK()+"\n");
+            } catch (IOException ex) {
+                Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                try {
+                    bw.close();
+                    fw.close();
+                } catch (IOException io) {
+                    io.printStackTrace();
+                }
             }
+        } else {
+            
+            JOptionPane.showMessageDialog(new JOptionPane(), "El Estado que intentas guardar\n no esta asociado a ningun Pais");
+            
         }
     }
+
 
     @Override
     public EstadoDTO leer(String idEstado) {

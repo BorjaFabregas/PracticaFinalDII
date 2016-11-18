@@ -33,15 +33,26 @@ public class AuditoriaDAO implements IAuditoriaDAO {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+            
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(auditoria.getIdAuditoria() + "-" + auditoria.getDescripcion() + "-" + auditoria.getFecha().toString() + "-" + auditoria.getHora() + "-" + auditoria.getUsuario() + "\n");
+            bw.write(id + "-" + auditoria.getDescripcion() + "-" + auditoria.getFecha().toString() + "-" + auditoria.getHora() + "-" + auditoria.getUsuario());
         } catch (IOException ex) {
             Logger.getLogger(AuditoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 bw.close();
-                fw.close();
+                fw.close();  
             } catch (IOException io) {
                 io.printStackTrace();
             }
