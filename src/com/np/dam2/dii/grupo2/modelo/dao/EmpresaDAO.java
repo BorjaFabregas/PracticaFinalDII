@@ -44,7 +44,7 @@ public class EmpresaDAO implements IEmpresaDAO {
             
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id + "-" + empresa.getRifEmpresa() + "-" + empresa.getEmail() + "-" + empresa.getDireccion() + "-"  + empresa.getMovil() + "-" + empresa.getStatus());
+            bw.write(id + "-" + empresa.getRifEmpresa() + "-" + empresa.getEmail() + "-" + empresa.getDireccion() + "-"  + empresa.getMovil() + "-" + empresa.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

@@ -45,7 +45,7 @@ public class IvaDAO implements IIvaDAO{
             
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id+ "-" + iva.getPorcentajeIva()+"-"+iva.getStatus());
+            bw.write(id+ "-" + iva.getPorcentajeIva()+"-"+iva.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(IvaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

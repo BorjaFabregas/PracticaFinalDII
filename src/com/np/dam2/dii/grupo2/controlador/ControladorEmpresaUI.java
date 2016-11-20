@@ -39,7 +39,7 @@ public class ControladorEmpresaUI implements ActionListener{
             dto.setDireccion(ui.getDireccion().getText());
             dto.setEmail(ui.getEmail().getText());
             dto.setMovil(ui.getTelefono().getText());
-            dto.setStatus(ui.getComboBox().getActionCommand().toString());
+            dto.setStatus(ui.getComboBox().getSelectedItem().toString());
             dao.guardar(dto);
             ui.dispose();
         }

@@ -44,7 +44,7 @@ public class ContactoDAO implements IContactoDAO {
             
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id+ "-" + contacto.getCedula()+ "-" + contacto.getNombre() + "-" + contacto.getEmail()+ "-" + contacto.getDireccion()+ "-" + contacto.getTelefono()+ "-" + contacto.getMovil()+ "-" + contacto.getStatus());
+            bw.write(id+ "-" + contacto.getCedula()+ "-" + contacto.getNombre() + "-" + contacto.getEmail()+ "-" + contacto.getDireccion()+ "-" + contacto.getTelefono()+ "-" + contacto.getMovil()+ "-" + contacto.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(AuditoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

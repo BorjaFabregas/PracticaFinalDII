@@ -32,7 +32,7 @@ public class PresupuestoEquipoDAO implements IPresupuestoEquipoDAO{
         try {
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(pEquipo.getIdPresupuestosEquipos()+ "-" + pEquipo.getCantidadPresupMod()+"-"+pEquipo.getTotal());
+            bw.write(pEquipo.getIdPresupuestosEquipos()+ "-" + pEquipo.getCantidadPresupMod()+"-"+pEquipo.getTotal()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(PresupuestoEquipoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

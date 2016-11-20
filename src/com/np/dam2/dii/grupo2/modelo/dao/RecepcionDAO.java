@@ -35,7 +35,7 @@ public class RecepcionDAO implements IRecepcionDAO {
         try {
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(recepcion.getIdRecepcion() + "-" + recepcion.getPersonaRecepcion() + "-" + recepcion.getModeloEquipo() + "-" + recepcion.getFechaRecepcion().toString() + "-" + recepcion.getCantidadProducRecepcion() + "-" + recepcion.getStatus());
+            bw.write(recepcion.getIdRecepcion() + "-" + recepcion.getPersonaRecepcion() + "-" + recepcion.getModeloEquipo() + "-" + recepcion.getFechaRecepcion().toString() + "-" + recepcion.getCantidadProducRecepcion() + "-" + recepcion.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(RecepcionDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

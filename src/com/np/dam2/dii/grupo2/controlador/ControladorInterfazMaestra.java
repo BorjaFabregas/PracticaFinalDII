@@ -131,9 +131,9 @@ public class ControladorInterfazMaestra implements ActionListener {
             case "listarEmpresas":
                 EmpresaDAO dao = EmpresaDAOFactory.getInstance().createEmpresaDAO();
                 LinkedList lista = (LinkedList) dao.listar();
-                String[] strArray;
-                strArray = (String[]) lista.toArray();
-                InterfazMaestraUI.columnNames = (strArray);
+                String[][] strArray;
+                strArray = (String[][]) lista.toArray();
+                InterfazMaestraUI.data = (strArray);
                 break;
             case "borrarEmpresa":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");

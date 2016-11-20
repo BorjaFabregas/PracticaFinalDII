@@ -45,7 +45,7 @@ public class EquipoDAO implements IEquipoDAO {
             
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id+ "-" + equipo.getNombre()+ "-" + equipo.getDescripcion()+ "-" + equipo.getSistemaOperativo()+ "-" + equipo.getCantidad()+ "-" + equipo.getPrecio()+ "-" + equipo.getStatus());
+            bw.write(id+ "-" + equipo.getNombre()+ "-" + equipo.getDescripcion()+ "-" + equipo.getSistemaOperativo()+ "-" + equipo.getCantidad()+ "-" + equipo.getPrecio()+ "-" + equipo.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(EquipoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

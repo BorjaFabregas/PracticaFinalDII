@@ -36,7 +36,7 @@ public class PresupuestoDAO implements IPresupuestoDAO {
         try {
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(presupuesto.getIdPresupuesto() + "-" + presupuesto.getRifEmpresaPresupuesto() + "-" + presupuesto.getFecha().toString() + "-" + presupuesto.getStatus() + "-" + presupuesto.getPresupuesto());
+            bw.write(presupuesto.getIdPresupuesto() + "-" + presupuesto.getRifEmpresaPresupuesto() + "-" + presupuesto.getFecha().toString() + "-" + presupuesto.getStatus() + "-" + presupuesto.getPresupuesto()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(PresupuestoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

@@ -46,7 +46,7 @@ public class AuditoriaDAO implements IAuditoriaDAO {
             
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id + "-" + auditoria.getDescripcion() + "-" + auditoria.getFecha().toString() + "-" + auditoria.getHora() + "-" + auditoria.getUsuario());
+            bw.write(id + "-" + auditoria.getDescripcion() + "-" + auditoria.getFecha().toString() + "-" + auditoria.getHora() + "-" + auditoria.getUsuario()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(AuditoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

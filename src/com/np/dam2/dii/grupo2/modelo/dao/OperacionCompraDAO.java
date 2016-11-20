@@ -33,7 +33,7 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
         try {
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(operacion.getIdOpCompra()+ "-" + operacion.getNumeroOpCompra()+"-"+operacion.getStatus());
+            bw.write(operacion.getIdOpCompra()+ "-" + operacion.getNumeroOpCompra()+"-"+operacion.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(OperacionCompraDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
