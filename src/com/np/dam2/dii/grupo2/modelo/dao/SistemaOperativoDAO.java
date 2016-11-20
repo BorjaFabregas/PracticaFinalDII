@@ -33,7 +33,7 @@ public class SistemaOperativoDAO implements ISistemaOperativoDAO {
         try {
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(sistema.getIdSO() + "-" + sistema.getNombre() + "-" + sistema.getPrecio() + "-" + sistema.getStatus());
+            bw.write(sistema.getIdSO() + "-" + sistema.getNombre() + "-" + sistema.getPrecio() + "-" + sistema.getStatus()+"\n");
         } catch (IOException ex) {
             Logger.getLogger(SistemaOperativoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
