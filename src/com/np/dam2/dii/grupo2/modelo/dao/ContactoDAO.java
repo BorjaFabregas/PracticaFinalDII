@@ -7,6 +7,7 @@ package com.np.dam2.dii.grupo2.modelo.dao;
 
 import com.np.dam2.dii.grupo2.modelo.dao.crud.IContactoDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.ContactoDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,20 +32,20 @@ public class ContactoDAO implements IContactoDAO {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            
+
             //Obtencion ultimo id y autoincremento
             int id = 1;
             String str;
-            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
-                while((str=br.readLine())!=null){
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                while ((str = br.readLine()) != null) {
                     id++;
                 }
                 br.close();
             }
-            
+
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id+ "-" + contacto.getCedula()+ "-" + contacto.getNombre() + "-" + contacto.getEmail()+ "-" + contacto.getDireccion()+ "-" + contacto.getTelefono()+ "-" + contacto.getMovil()+ "-" + contacto.getStatus()+"\n");
+            bw.write(id + "-" + contacto.getCedula() + "-" + contacto.getNombre() + "-" + contacto.getEmail() + "-" + contacto.getDireccion() + "-" + contacto.getTelefono() + "-" + contacto.getMovil() + "-" + contacto.getStatus() + "-" + contacto.getIdEmpresaFK() + "-" + contacto.getIdEstadoFK() + "\n");
         } catch (IOException ex) {
             Logger.getLogger(AuditoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -85,7 +86,7 @@ public class ContactoDAO implements IContactoDAO {
                     contacto.setStatus(atributos[7]);
                     contacto.setIdEstadoFK(atributos[8]);
                     contacto.setIdEmpresaFK(atributos[9]);
-                    contacto.setRifEmpresaFK(atributos[10]);
+
                     esEncontrado = true;
                 }
 
@@ -108,7 +109,8 @@ public class ContactoDAO implements IContactoDAO {
 
     @Override
     public void borrar(String idContacto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Utilidades u = new Utilidades(new File("ficheros/contactos.txt"));
+        u.eliminar(idContacto);
     }
 
     @Override

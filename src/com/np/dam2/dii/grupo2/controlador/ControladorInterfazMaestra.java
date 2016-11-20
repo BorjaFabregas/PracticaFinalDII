@@ -44,6 +44,26 @@ public class ControladorInterfazMaestra implements ActionListener {
 
     InterfazMaestraUI interfazMaestra;
     private String idBuscado;
+    AuditoriaDAO auditoriaDAO;
+    AuditoriaDTO auditoriaDTO;
+    ContactoDAO contactoDAO;
+    ContactoDTO contactoDTO;
+    EmpresaDAO empresaDAO;
+    EmpresaDTO empresaDTO;
+    EquipoDAO equipoDAO;
+    EquipoDTO equipoDTO;
+    EstadoDAO estadoDAO;
+    EstadoDTO estadoDTO;
+    OperacionCompraDAO compraDAO;
+    OperacionCompraDTO compraDTO;
+    PaisDAO paisDAO;
+    PaisDTO paisDTO;
+    PresupuestoDAO presupuestoDAO;
+    PresupuestoDTO presupuestoDTO;
+    RecepcionDAO recepcionDAO;
+    RecepcionDTO recepcionDTO;
+    SistemaOperativoDAO sistemaOperativoDAO;
+    SistemaOperativoDTO sistemaOperativoDTO;
 
     public ControladorInterfazMaestra() {
         interfazMaestra = new InterfazMaestraUI();
@@ -129,8 +149,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 ControladorEmpresaUI cem = new ControladorEmpresaUI();
                 break;
             case "listarEmpresas":
-                EmpresaDAO dao = EmpresaDAOFactory.getInstance().createEmpresaDAO();
-                LinkedList lista = (LinkedList) dao.listar();
+                empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
+                LinkedList lista = (LinkedList) empresaDAO.listar();
                 String[][] strArray;
                 strArray = (String[][]) lista.toArray();
                 InterfazMaestraUI.data = (strArray);
@@ -145,8 +165,8 @@ public class ControladorInterfazMaestra implements ActionListener {
             case "buscarEmpresa":
                 //JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Empresa", "Buscar Empresa", JOptionPane.QUESTION_MESSAGE);
-                EmpresaDAO empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
-                EmpresaDTO empresaDTO = empresaDAO.leer(idBuscado);
+                empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
+                empresaDTO = empresaDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, empresaDTO.toString());
                 break;
             //Presupuestos
@@ -164,16 +184,19 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarPresupuesto":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Presupuesto", "Buscar Presupuesto", JOptionPane.QUESTION_MESSAGE);
-                PresupuestoDAO presupuestoDAO = PresupuestoDAOFactory.getInstance().createPresupuestoDAO();
-                PresupuestoDTO presupuestoDTO = presupuestoDAO.leer(idBuscado);
+                presupuestoDAO = PresupuestoDAOFactory.getInstance().createPresupuestoDAO();
+                presupuestoDTO = presupuestoDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, presupuestoDTO.toString());
                 break;
             //Contactos
             case "nuevoContacto":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                ControladorContactoUI ccui = new ControladorContactoUI("Guardar");
                 break;
             case "borrarContacto":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                contactoDAO = ContactoDAOFactory.getInstance().createContactoDAO();
+                contactoDTO = new ContactoDTO();
+                contactoDTO.setIdPContactos(JOptionPane.showInputDialog(interfazMaestra, "ID Contacto"));
+                contactoDAO.borrar(contactoDTO.getIdPContactos());
                 break;
             case "listarContactos":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -183,8 +206,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarContacto":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Contacto", "Buscar Contacto", JOptionPane.QUESTION_MESSAGE);
-                ContactoDAO contactoDAO = ContactoDAOFactory.getInstance().createContactoDAO();
-                ContactoDTO contactoDTO = contactoDAO.leer(idBuscado);
+                contactoDAO = ContactoDAOFactory.getInstance().createContactoDAO();
+                contactoDTO = contactoDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, contactoDTO.toString());
                 break;
             //Equipos
@@ -202,8 +225,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarEquipo":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Equipo", "Buscar Equipo", JOptionPane.QUESTION_MESSAGE);
-                EquipoDAO equipoDAO = EquipoDAOFactory.getInstance().createEquipoDAO();
-                EquipoDTO equipoDTO = equipoDAO.leer(idBuscado);
+                equipoDAO = EquipoDAOFactory.getInstance().createEquipoDAO();
+                equipoDTO = equipoDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, equipoDTO.toString());
                 break;
             //SSOO
@@ -221,8 +244,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarSO":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID S.O.", "Buscar S.Operativo", JOptionPane.QUESTION_MESSAGE);
-                SistemaOperativoDAO sistemaOperativoDAO = SistemaOperativoDAOFactory.getInstance().createSistemaOperativoDAO();
-                SistemaOperativoDTO sistemaOperativoDTO = sistemaOperativoDAO.leer(idBuscado);
+                 sistemaOperativoDAO = SistemaOperativoDAOFactory.getInstance().createSistemaOperativoDAO();
+                 sistemaOperativoDTO = sistemaOperativoDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, sistemaOperativoDTO.toString());
                 break;
             //Auditorias
@@ -240,8 +263,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarAuditoria":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Auditoria", "Buscar Auditoria", JOptionPane.QUESTION_MESSAGE);
-                AuditoriaDAO auditoriaDAO = AuditoriaDAOFactory.getInstance().createAuditoriaDAO();
-                AuditoriaDTO auditoriaDTO = auditoriaDAO.leer(idBuscado);
+                auditoriaDAO = AuditoriaDAOFactory.getInstance().createAuditoriaDAO();
+                auditoriaDTO = auditoriaDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, auditoriaDTO.toString());
                 break;
             //Recepciones
@@ -259,8 +282,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarRecepcion":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Recepcion", "Buscar Recepcion", JOptionPane.QUESTION_MESSAGE);
-                RecepcionDAO recepcionDAO = RecepcionDAOFactory.getInstance().createRecepcionDAO();
-                RecepcionDTO recepcionDTO = recepcionDAO.leer(idBuscado);
+                recepcionDAO = RecepcionDAOFactory.getInstance().createRecepcionDAO();
+                recepcionDTO = recepcionDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, recepcionDTO.toString());
                 break;
             //Compras
@@ -278,9 +301,9 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarCompra":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Compra", "Buscar Compra", JOptionPane.QUESTION_MESSAGE);
-                OperacionCompraDAO operacionCompraDAO = OperacionCompraDAOFactory.getInstance().createOperacionCompraDAO();
-                OperacionCompraDTO operacionCompraDTO = operacionCompraDAO.leer(idBuscado);
-                JOptionPane.showMessageDialog(interfazMaestra, operacionCompraDTO.toString());
+                compraDAO = OperacionCompraDAOFactory.getInstance().createOperacionCompraDAO();
+                compraDTO = compraDAO.leer(idBuscado);
+                JOptionPane.showMessageDialog(interfazMaestra, compraDTO.toString());
                 break;
             //Paises
             case "nuevoPais":
@@ -288,8 +311,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarPais":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Pais", "Buscar Pais", JOptionPane.QUESTION_MESSAGE);
-                PaisDAO paisDAO = PaisDAOFactory.getInstance().createPaisDAO();
-                PaisDTO paisDTO = paisDAO.leer(idBuscado);
+                paisDAO = PaisDAOFactory.getInstance().createPaisDAO();
+                paisDTO = paisDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, paisDTO.toString());
                 break;
             //Estados
@@ -298,8 +321,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarEstado":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Estado", "Buscar Estado", JOptionPane.QUESTION_MESSAGE);
-                EstadoDAO estadoDAO = EstadoDAOFactory.getInstance().createEstadoDAO();
-                EstadoDTO estadoDTO = estadoDAO.leer(idBuscado);
+                estadoDAO = EstadoDAOFactory.getInstance().createEstadoDAO();
+                estadoDTO = estadoDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, estadoDTO.toString());
                 break;
         }

@@ -57,7 +57,7 @@ public class Utilidades {
         return registro;
     }
 
-    public String[] readLine(int line) {
+    public static String[] readLine(int line) {
         String[] registro = null;
 
         FileReader fr;
@@ -141,7 +141,7 @@ public class Utilidades {
         }
     }
 
-    public void eliminar(String id) {
+    public  void eliminar(String id) {
         String str = "";
 
         FileReader fr;
@@ -164,7 +164,7 @@ public class Utilidades {
 
             while (linea != null) {
                 //Si la linea contiene la PK que queremos eliminar NO se guarda
-                while (linea.charAt(i) != ';') {
+                while (linea.charAt(i) != '-') {
                     pkRegistro = pkRegistro + linea.charAt(i);
                     i++;
                 }

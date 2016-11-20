@@ -25,11 +25,12 @@ public class ContactoUI extends JFrame {
     public JTextField direccion;
     public JTextField fijo;
     public JTextField movil;
+    public JButton btnAccion;
     public JComboBox comboBoxEstatus, comboBoxEmpresas, comboBoxEstados;
 
     public ContactoUI(String accion) {
 
-        this.setTitle( accion + "Contacto");
+        this.setTitle( accion + " Contacto");
         
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -168,7 +169,8 @@ public class ContactoUI extends JFrame {
         gbc_lblEstado.gridy = 7;
         panel.add(lblEstado, gbc_lblEstado);
 
-        comboBoxEstados = new JComboBox();
+        String[] estados = {"1","2","3","4"};
+        comboBoxEstados = new JComboBox(estados);
         GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
         gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
         gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
@@ -184,7 +186,8 @@ public class ContactoUI extends JFrame {
         gbc_lblEmpresa.gridy = 8;
         panel.add(lblEmpresa, gbc_lblEmpresa);
 
-        comboBoxEmpresas = new JComboBox();
+        String[] empresas = {"1","2","3","4"};
+        comboBoxEmpresas = new JComboBox(empresas);
         GridBagConstraints gbc_comboBox_2 = new GridBagConstraints();
         gbc_comboBox_2.fill = GridBagConstraints.HORIZONTAL;
         gbc_comboBox_2.gridx = 1;
@@ -194,7 +197,7 @@ public class ContactoUI extends JFrame {
         JPanel panel_1 = new JPanel();
         getContentPane().add(panel_1, BorderLayout.SOUTH);
 
-        JButton btnAccion = new JButton(accion);
+        btnAccion = new JButton(accion);
         panel_1.add(btnAccion);
         
         if(accion=="Actualizar"){
