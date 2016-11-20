@@ -1,6 +1,7 @@
 package com.np.dam2.dii.grupo2.modelo.dao.dto;
 
 
+import com.np.dam2.dii.grupo2.controlador.ControladorLogin;
 import java.util.Date;
 
 public class AuditoriaDTO {
@@ -18,6 +19,16 @@ public class AuditoriaDTO {
     public AuditoriaDTO() {
     }
 
+    @Override
+    public String toString() {
+        return "ID Auditoria: "+ idAuditoria
+                + "\nDescripcion: " + descripcion
+                + "\nFecha: " + fecha.toString()
+                +"\nUsuario asociado: " + ControladorLogin.nombreUsuario;
+    }
+
+    
+    
     /**
      * @return the idAuditoria
      */

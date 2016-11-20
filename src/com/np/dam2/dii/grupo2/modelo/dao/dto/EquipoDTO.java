@@ -21,6 +21,19 @@ public class EquipoDTO {
     
     private String idSistemaOperativoFK;
 
+    @Override
+    public String toString() {
+        return "ID Equipo: " + idEquipo
+                +"\nNombre: " + nombre
+                +"\nDescripcion: " + descripcion
+                +"\nSistema Operativo: " + sistemaOperativo
+                +"\nCantidad: " + cantidad
+                +"\nPrecio: " + precio + "€"
+                +"\nEstatus: " + status;
+    }
+
+    
+    
     public EquipoDTO() {
     }
 

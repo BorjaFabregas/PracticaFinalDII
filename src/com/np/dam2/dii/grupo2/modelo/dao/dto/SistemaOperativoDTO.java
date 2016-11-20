@@ -11,6 +11,13 @@ public class SistemaOperativoDTO {
 
     private String status;
 
+    @Override
+    public String toString() {
+        return super.toString(); //A desarrollar por JCarlos o Sergio
+    }
+
+    
+    
     public SistemaOperativoDTO() {
     }
 

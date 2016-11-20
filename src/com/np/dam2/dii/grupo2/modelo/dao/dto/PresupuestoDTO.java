@@ -17,6 +17,17 @@ public class PresupuestoDTO {
     
     private String idEmpresaFK;
 
+    @Override
+    public String toString() {
+        return "ID Presupuesto: " + idPresupuesto
+                +"\nFecha: " + fecha.toString()
+                +"\nEstatus: " + status
+                +"\nPresupuesto: " + presupuesto + "€"
+                +"\nID Empresa Asociada: " + idEmpresaFK;
+    }
+
+    
+    
     public PresupuestoDTO() {
     }
 

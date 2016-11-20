@@ -6,22 +6,21 @@ import java.util.Date;
 public class RecepcionDTO {
 
     private String idRecepcion;
-
     private String personaRecepcion;
-
     private String modeloEquipo;
-
     private Date fechaRecepcion;
-
     private int cantidadProducRecepcion;
-
-    private String status;
-    
+    private String status;  
     private String idSistemaOperativoFK;
-    
-    private String idEmpresaFK;
-    
+    private String idEmpresaFK;    
     private String idEquipoFK;
+
+    @Override
+    public String toString() {
+        return idEmpresaFK;//Terminar de Implementar JCarlos o Sergio
+    }
+    
+    
 
     public RecepcionDTO() {
     }

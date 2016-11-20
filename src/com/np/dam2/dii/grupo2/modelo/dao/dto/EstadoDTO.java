@@ -15,6 +15,13 @@ public class EstadoDTO {
     private String idPaisFK;
     private String nombre;
 
+    @Override
+    public String toString() {
+        return "ID Estado: " + idEstado
+                + "\nNombre: " + nombre
+                + "\nID Pais asociado: " + idPaisFK;
+    }
+
     public String getIdEstado() {
         return idEstado;
     }
@@ -38,7 +45,5 @@ public class EstadoDTO {
     public void setIdPaisFK(String idPaisFK) {
         this.idPaisFK = idPaisFK;
     }
-    
-    
 
 }

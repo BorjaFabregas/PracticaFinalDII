@@ -11,6 +11,16 @@ public class OperacionCompraDTO {
     
     private String idPresupuestoFK;
 
+    @Override
+    public String toString() {
+        return "ID Operacion de Compra: " + idOpCompra
+                + "\nNumero de operacion: " + numeroOpCompra
+                + "\nEstatus: " + status
+                + "\nID Presupuesto asociado: " + idPresupuestoFK;
+    }
+
+    
+    
     public OperacionCompraDTO() {
     }
 

@@ -1,6 +1,5 @@
 package com.np.dam2.dii.grupo2.modelo.dao.dto;
 
-
 public class EmpresaDTO {
 
     private String idEmpresa;
@@ -17,8 +16,6 @@ public class EmpresaDTO {
 
     public EmpresaDTO() {
     }
-    
-    
 
     /**
      * @return the idEmpresa
@@ -102,6 +99,15 @@ public class EmpresaDTO {
      */
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "ID Empresa: " + idEmpresa 
+                + "\nEmail: " + email 
+                + "\nDireccion: " + direccion 
+                + "\nTelefono: " + movil 
+                + "\nEstatus: " + status;
     }
 
 }

@@ -14,6 +14,14 @@ public class PaisDTO {
     private String idPais;
     private String nombre;
 
+    @Override
+    public String toString() {
+        return "ID Pais: " + idPais
+                + "\nNombre: " + nombre;
+    }
+
+    
+    
     public String getIdPais() {
         return idPais;
     }

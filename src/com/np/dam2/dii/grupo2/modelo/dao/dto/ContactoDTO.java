@@ -1,6 +1,5 @@
 package com.np.dam2.dii.grupo2.modelo.dao.dto;
 
-
 public class ContactoDTO {
 
     private String idPContactos;
@@ -18,14 +17,28 @@ public class ContactoDTO {
     private int movil;
 
     private String status;
-    
+
     private String idEstadoFK;
-    
+
     private String idEmpresaFK;
-    
+
     private String rifEmpresaFK;
-    
-    
+
+    @Override
+    public String toString() {
+        return "ID Contacto: " + idPContactos
+                + "\nNombre: " + nombre
+                + "\nCedula: " + cedula
+                + "\nE-mail: " + email
+                + "\nDireccion: " + direccion
+                + "\nFijo: " + telefono
+                + "\nMovil: " + movil
+                + "\nEstatus: " + status
+                + "\nEstado asociado: " + idEstadoFK
+                + "\nEmpresa asociada: " + idEmpresaFK;
+
+    }
+
     public ContactoDTO() {
     }
 
@@ -84,7 +97,6 @@ public class ContactoDTO {
     public String getStatus() {
         return status;
     }
-
 
     /**
      * @param idPContactos the idPContactos to set
@@ -170,11 +182,4 @@ public class ContactoDTO {
     public String toString() {
         return idPContactos + "-" + cedula + todos los atributos excepto las FK;
     }*/
-    
-    
-
-    
-    
-    
-
 }
