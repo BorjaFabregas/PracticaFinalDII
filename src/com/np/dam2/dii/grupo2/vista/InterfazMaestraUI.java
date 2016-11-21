@@ -409,10 +409,6 @@ public class InterfazMaestraUI extends JFrame {
         cerrarSesion.setActionCommand("cerrarSesion");
         menuSalir.add(cerrarSesion);
 
-        salir = new JMenuItem("Salir");
-        salir.setActionCommand("salir");
-        menuSalir.add(salir);
-
         this.setSize(933, 427);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
