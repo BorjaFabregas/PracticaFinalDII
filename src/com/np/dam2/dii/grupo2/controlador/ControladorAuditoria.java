@@ -6,6 +6,8 @@ import com.np.dam2.dii.grupo2.modelo.dao.dto.AuditoriaDTO;
 import com.np.dam2.dii.grupo2.vista.AuditoriaUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +20,7 @@ public class ControladorAuditoria implements ActionListener {
     AuditoriaDTO dto;
 
     public ControladorAuditoria(String parametro, String accion) {
-        
+
         dao = AuditoriaDAOFactory.getInstance().createAuditoriaDAO();
         dto = new AuditoriaDTO();
         ui = new AuditoriaUI(parametro, accion);
@@ -31,9 +33,15 @@ public class ControladorAuditoria implements ActionListener {
         String comando = e.getActionCommand();
 
         switch (comando) {
-            case "Borrar":
-                dto.setIdAuditoria(ui.textField.getText());
-                dao.borrar(dto.getIdAuditoria());
+            case "Guardar":
+                dto.setDescripcion(ui.textField.getText());
+                dto.setFecha(new Date());
+                dto.setHora(new Date());
+                dto.setUsuario(ControladorLogin.nombreUsuario);
+                dao.guardar(dto);
+
+                ui.dispose();
+                JOptionPane.showMessageDialog(ui, "Auditoria Guardada");
                 break;
         }
 

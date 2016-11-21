@@ -7,6 +7,7 @@ package com.np.dam2.dii.grupo2.modelo.dao;
 
 import com.np.dam2.dii.grupo2.modelo.dao.crud.ISistemaOperativoDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.SistemaOperativoDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -89,7 +90,8 @@ public class SistemaOperativoDAO implements ISistemaOperativoDAO {
 
     @Override
     public void borrar(String idSistema) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Utilidades u = new Utilidades(new File("ficheros/SistemasOperativos.txt"));
+        u.eliminar(idSistema);
     }
 
     @Override

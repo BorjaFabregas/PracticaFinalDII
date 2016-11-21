@@ -7,6 +7,7 @@ package com.np.dam2.dii.grupo2.modelo.dao;
 
 import com.np.dam2.dii.grupo2.modelo.dao.crud.IEmpresaDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.EmpresaDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,20 +32,20 @@ public class EmpresaDAO implements IEmpresaDAO {
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            
+
             //Obtencion ultimo id y autoincremento
             int id = 1;
             String str;
-            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
-                while((str=br.readLine())!=null){
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                while ((str = br.readLine()) != null) {
                     id++;
                 }
                 br.close();
             }
-            
+
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id + "-" + empresa.getRifEmpresa() + "-" + empresa.getEmail() + "-" + empresa.getDireccion() + "-"  + empresa.getMovil() + "-" + empresa.getStatus()+"\n");
+            bw.write(id + "-" + empresa.getRifEmpresa() + "-" + empresa.getEmail() + "-" + empresa.getDireccion() + "-" + empresa.getMovil() + "-" + empresa.getStatus() + "\n");
         } catch (IOException ex) {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -61,7 +62,7 @@ public class EmpresaDAO implements IEmpresaDAO {
     public EmpresaDTO leer(String idEmpresa) {
         File f = new File("ficheros/Empresas.txt");
         String linea = "";
-        boolean esEncontrado=false;
+        boolean esEncontrado = false;
         FileReader fr = null;
         BufferedReader br = null;
         EmpresaDTO empresa = new EmpresaDTO();
@@ -81,7 +82,7 @@ public class EmpresaDAO implements IEmpresaDAO {
                     empresa.setDireccion(atributos[3]);
                     empresa.setMovil((atributos[4]));
                     empresa.setStatus(atributos[5]);
-                    esEncontrado=true;
+                    esEncontrado = true;
                 }
             }
         } catch (FileNotFoundException ex) {
@@ -101,7 +102,8 @@ public class EmpresaDAO implements IEmpresaDAO {
 
     @Override
     public void borrar(String idEmpresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Utilidades u = new Utilidades(new File("ficheros/Empresas.txt"));
+        u.eliminar(idEmpresa);//Borrado en Cascada
     }
 
     @Override
@@ -111,7 +113,7 @@ public class EmpresaDAO implements IEmpresaDAO {
 
     @Override
     public List<EmpresaDTO> listar() {
-           LinkedList lista;
+        LinkedList lista;
         int numLineas = 0;
         String linea = "";
         File f = new File("ficheros/Empresas.txt");
@@ -132,9 +134,9 @@ public class EmpresaDAO implements IEmpresaDAO {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (IndexOutOfBoundsException ioobe){
+        } catch (IndexOutOfBoundsException ioobe) {
             ioobe.printStackTrace();
-        } 
+        }
 
         lista = new LinkedList<EmpresaDTO>();
         for (i = 1; i < numLineas; i++) {

@@ -7,6 +7,7 @@ package com.np.dam2.dii.grupo2.modelo.dao;
 
 import com.np.dam2.dii.grupo2.modelo.dao.crud.IOperacionCompraDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.OperacionCompraDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -89,7 +90,8 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
 
     @Override
     public void borrar(String idOperacionCOmpra) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Utilidades u = new Utilidades(new File("ficheros/OperacionesCompras.txt"));
+        u.eliminar(idOperacionCOmpra);
     }
 
     @Override

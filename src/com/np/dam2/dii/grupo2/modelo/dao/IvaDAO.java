@@ -5,9 +5,9 @@
  */
 package com.np.dam2.dii.grupo2.modelo.dao;
 
-
 import com.np.dam2.dii.grupo2.modelo.dao.crud.IIvaDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.IvaDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,47 +24,45 @@ import java.util.logging.Logger;
  *
  * @author Grupo 2
  */
-public class IvaDAO implements IIvaDAO{
+public class IvaDAO implements IIvaDAO {
 
     @Override
     public void guardar(IvaDTO iva) {
-         File f = new File("Ivas.txt");
+        File f = new File("Ivas.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
-            
+
             //Obtencion ultimo id y autoincremento
             int id = 1;
             String str;
-            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
-                while((str=br.readLine())!=null){
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                while ((str = br.readLine()) != null) {
                     id++;
                 }
                 br.close();
             }
-            
+
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(id+ "-" + iva.getPorcentajeIva()+"-"+iva.getStatus()+"\n");
+            bw.write(id + "-" + iva.getPorcentajeIva() + "-" + iva.getStatus() + "\n");
         } catch (IOException ex) {
             Logger.getLogger(IvaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 bw.close();
-                fw.close();  
+                fw.close();
             } catch (IOException io) {
                 io.printStackTrace();
             }
         }
     }
 
-
-
     @Override
     public IvaDTO leer(String idIva) {
-              File f = new File("ficheros/Ivas.txt");
+        File f = new File("ficheros/Ivas.txt");
         String linea = "";
-        boolean esEncontrado=false;
+        boolean esEncontrado = false;
         FileReader fr = null;
         BufferedReader br = null;
         IvaDTO iva = new IvaDTO();
@@ -81,7 +79,7 @@ public class IvaDAO implements IIvaDAO{
                     iva.setIdIva(idIva);
                     iva.setPorcentajeIva(Float.parseFloat(atributos[1]));
                     iva.setStatus(atributos[2]);
-                    esEncontrado=true;
+                    esEncontrado = true;
                 }
             }
         } catch (FileNotFoundException ex) {
@@ -101,7 +99,8 @@ public class IvaDAO implements IIvaDAO{
 
     @Override
     public void borrar(String idIva) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Utilidades u = new Utilidades(new File("ficheros/Ivas.txt"));
+        u.eliminar(idIva);
     }
 
     @Override
@@ -132,9 +131,9 @@ public class IvaDAO implements IIvaDAO{
             Logger.getLogger(IvaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(IvaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (IndexOutOfBoundsException ioobe){
+        } catch (IndexOutOfBoundsException ioobe) {
             ioobe.printStackTrace();
-        } 
+        }
 
         lista = new LinkedList<IvaDTO>();
         for (i = 1; i < numLineas; i++) {

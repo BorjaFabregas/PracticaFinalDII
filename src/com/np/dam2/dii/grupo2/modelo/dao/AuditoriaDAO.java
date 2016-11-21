@@ -7,6 +7,7 @@ package com.np.dam2.dii.grupo2.modelo.dao;
 
 import com.np.dam2.dii.grupo2.modelo.dao.crud.IAuditoriaDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.AuditoriaDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -109,7 +110,8 @@ public class AuditoriaDAO implements IAuditoriaDAO {
 
     @Override
     public void borrar(String idAuditoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         Utilidades u = new Utilidades(new File("ficheros/Auditorias.txt"));
+        u.eliminar(idAuditoria);
     }
 
     @Override

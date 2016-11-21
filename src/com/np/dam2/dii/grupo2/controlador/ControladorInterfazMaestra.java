@@ -31,9 +31,13 @@ import com.np.dam2.dii.grupo2.modelo.dao.factory.PresupuestoDAOFactory;
 import com.np.dam2.dii.grupo2.modelo.dao.factory.RecepcionDAOFactory;
 import com.np.dam2.dii.grupo2.modelo.dao.factory.SistemaOperativoDAOFactory;
 import com.np.dam2.dii.grupo2.vista.InterfazMaestraUI;
+import com.sun.javafx.event.EventDispatchTreeImpl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -139,31 +143,29 @@ public class ControladorInterfazMaestra implements ActionListener {
                 interfazMaestra.dispose();
                 ControladorLogin cl = new ControladorLogin();
                 break;
-            case "salir":
-                if (JOptionPane.showConfirmDialog(interfazMaestra, "¿Seguro que quieres salir?", "Salir", 0) == 0) {
-                    interfazMaestra.dispose();
-                }
-                break;
             //Empresas
             case "nuevaEmpresa":
-                ControladorEmpresaUI cem = new ControladorEmpresaUI();
+                ControladorEmpresaUI controladorEmpresaUI = new ControladorEmpresaUI();
                 break;
             case "listarEmpresas":
-                empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
+                /*empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
                 LinkedList lista = (LinkedList) empresaDAO.listar();
                 String[][] strArray;
                 strArray = (String[][]) lista.toArray();
-                InterfazMaestraUI.data = (strArray);
+                InterfazMaestraUI.data = (strArray);*/
                 break;
             case "borrarEmpresa":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
+                empresaDTO = new EmpresaDTO();
+                empresaDTO.setIdEmpresa(JOptionPane.showInputDialog(interfazMaestra, "ID Empresa", "Borrar Empresa", JOptionPane.QUESTION_MESSAGE));
+                empresaDAO.borrar(empresaDTO.getIdEmpresa());
+                JOptionPane.showMessageDialog(interfazMaestra, "Empresa Borrada");
                 break;
             case "updateEmpresa":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 //Para actualizar la empresa primero se hace buscar empresa y despues se lanza la interfaz con los paraetros llenos
                 break;
             case "buscarEmpresa":
-                //JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID Empresa", "Buscar Empresa", JOptionPane.QUESTION_MESSAGE);
                 empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
                 empresaDTO = empresaDAO.leer(idBuscado);
@@ -174,7 +176,12 @@ public class ControladorInterfazMaestra implements ActionListener {
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 break;
             case "borrarPresupuesto":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                presupuestoDAO = PresupuestoDAOFactory.getInstance().createPresupuestoDAO();
+                presupuestoDTO = new PresupuestoDTO();
+                presupuestoDTO.setIdPresupuesto(JOptionPane.showInputDialog(interfazMaestra, "ID Presupuesto", "Borrar Presupuesto", JOptionPane.QUESTION_MESSAGE));
+                presupuestoDAO.borrar(presupuestoDTO.getIdPresupuesto());
+                JOptionPane.showMessageDialog(interfazMaestra, "Presupuesto Borrado");
+                //Borrado en cascada
                 break;
             case "listarPresupuestos":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -195,8 +202,9 @@ public class ControladorInterfazMaestra implements ActionListener {
             case "borrarContacto":
                 contactoDAO = ContactoDAOFactory.getInstance().createContactoDAO();
                 contactoDTO = new ContactoDTO();
-                contactoDTO.setIdPContactos(JOptionPane.showInputDialog(interfazMaestra, "ID Contacto"));
+                contactoDTO.setIdPContactos(JOptionPane.showInputDialog(interfazMaestra, "ID Contacto", "Borrar Contacto", JOptionPane.QUESTION_MESSAGE));
                 contactoDAO.borrar(contactoDTO.getIdPContactos());
+                JOptionPane.showMessageDialog(interfazMaestra, "Contacto Borrado");
                 break;
             case "listarContactos":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -215,7 +223,11 @@ public class ControladorInterfazMaestra implements ActionListener {
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 break;
             case "borrarEquipo":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                equipoDAO = EquipoDAOFactory.getInstance().createEquipoDAO();
+                equipoDTO = new EquipoDTO();
+                equipoDTO.setIdEquipo(JOptionPane.showInputDialog(interfazMaestra, "ID Equipo", "Borrar Equipo", JOptionPane.QUESTION_MESSAGE));
+                equipoDAO.borrar(equipoDTO.getIdEquipo());
+                JOptionPane.showMessageDialog(interfazMaestra, "Equipo Borrado");
                 break;
             case "listarEquipos":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -234,7 +246,11 @@ public class ControladorInterfazMaestra implements ActionListener {
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 break;
             case "borraSO":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                sistemaOperativoDAO = SistemaOperativoDAOFactory.getInstance().createSistemaOperativoDAO();
+                sistemaOperativoDTO = new SistemaOperativoDTO();
+                sistemaOperativoDTO.setIdSO(JOptionPane.showInputDialog(interfazMaestra, "ID S.O.", "Borrar Sistema Operativo", JOptionPane.QUESTION_MESSAGE));
+                sistemaOperativoDAO.borrar(sistemaOperativoDTO.getIdSO());
+                JOptionPane.showMessageDialog(interfazMaestra, "Sistema Operativo Borrado");
                 break;
             case "listarSO":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -244,8 +260,8 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             case "buscarSO":
                 idBuscado = JOptionPane.showInputDialog(interfazMaestra, "ID S.O.", "Buscar S.Operativo", JOptionPane.QUESTION_MESSAGE);
-                 sistemaOperativoDAO = SistemaOperativoDAOFactory.getInstance().createSistemaOperativoDAO();
-                 sistemaOperativoDTO = sistemaOperativoDAO.leer(idBuscado);
+                sistemaOperativoDAO = SistemaOperativoDAOFactory.getInstance().createSistemaOperativoDAO();
+                sistemaOperativoDTO = sistemaOperativoDAO.leer(idBuscado);
                 JOptionPane.showMessageDialog(interfazMaestra, sistemaOperativoDTO.toString());
                 break;
             //Auditorias
@@ -253,7 +269,10 @@ public class ControladorInterfazMaestra implements ActionListener {
                 ControladorAuditoria na = new ControladorAuditoria("Descripcion", "Guardar");
                 break;
             case "borrarAuditoria":
-                ControladorAuditoria ca = new ControladorAuditoria("Id", "Borrar");
+                auditoriaDAO = AuditoriaDAOFactory.getInstance().createAuditoriaDAO();
+                auditoriaDTO = new AuditoriaDTO();
+                auditoriaDTO.setIdAuditoria(JOptionPane.showInputDialog(interfazMaestra, "ID Auditoria", "Borrar Auditoria", JOptionPane.QUESTION_MESSAGE));
+                JOptionPane.showMessageDialog(interfazMaestra, "Auditoria Borrada");
                 break;
             case "listarAuditorias":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -272,7 +291,10 @@ public class ControladorInterfazMaestra implements ActionListener {
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 break;
             case "borrarRecepcion":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                recepcionDAO = RecepcionDAOFactory.getInstance().createRecepcionDAO();
+                recepcionDTO.setIdRecepcion(JOptionPane.showInputDialog(interfazMaestra, "ID Recepcion", "Borrar Recepcion", JOptionPane.QUESTION_MESSAGE));
+                recepcionDAO.borrar(recepcionDTO.getIdRecepcion());
+                JOptionPane.showMessageDialog(interfazMaestra, "Recepcion Borrada");
                 break;
             case "listarRecepciones":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
@@ -291,7 +313,11 @@ public class ControladorInterfazMaestra implements ActionListener {
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
                 break;
             case "borrarCompra":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                compraDAO = OperacionCompraDAOFactory.getInstance().createOperacionCompraDAO();
+                compraDTO = new OperacionCompraDTO();
+                compraDTO.setIdOpCompra(JOptionPane.showInputDialog(interfazMaestra, "ID Compra", "Borrar Compra", JOptionPane.QUESTION_MESSAGE));
+                compraDAO.borrar(compraDTO.getIdOpCompra());
+                JOptionPane.showMessageDialog(interfazMaestra, "Compra Borrada");
                 break;
             case "listarCompras":
                 JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");

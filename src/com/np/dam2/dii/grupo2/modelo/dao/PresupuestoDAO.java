@@ -5,9 +5,9 @@
  */
 package com.np.dam2.dii.grupo2.modelo.dao;
 
-
 import com.np.dam2.dii.grupo2.modelo.dao.crud.IPresupuestoDAO;
 import com.np.dam2.dii.grupo2.modelo.dao.dto.PresupuestoDTO;
+import com.np.dam2.dii.grupo2.modelo.dao.util.Utilidades;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -36,7 +36,7 @@ public class PresupuestoDAO implements IPresupuestoDAO {
         try {
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(presupuesto.getIdPresupuesto() + "-" + presupuesto.getRifEmpresaPresupuesto() + "-" + presupuesto.getFecha().toString() + "-" + presupuesto.getStatus() + "-" + presupuesto.getPresupuesto()+"\n");
+            bw.write(presupuesto.getIdPresupuesto() + "-" + presupuesto.getRifEmpresaPresupuesto() + "-" + presupuesto.getFecha().toString() + "-" + presupuesto.getStatus() + "-" + presupuesto.getPresupuesto() + "\n");
         } catch (IOException ex) {
             Logger.getLogger(PresupuestoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -96,7 +96,8 @@ public class PresupuestoDAO implements IPresupuestoDAO {
 
     @Override
     public void borrar(String idPresupuesto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Utilidades u = new Utilidades(new File("ficheros/Presupuestos.txt"));
+        u.eliminar(idPresupuesto);
     }
 
     @Override
@@ -106,7 +107,7 @@ public class PresupuestoDAO implements IPresupuestoDAO {
 
     @Override
     public List<PresupuestoDTO> listar() {
-               LinkedList lista;
+        LinkedList lista;
         int numLineas = 0;
         String linea = "";
         File f = new File("ficheros/Presupuestos.txt");
@@ -127,9 +128,9 @@ public class PresupuestoDAO implements IPresupuestoDAO {
             Logger.getLogger(PresupuestoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(PresupuestoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (IndexOutOfBoundsException ioobe){
+        } catch (IndexOutOfBoundsException ioobe) {
             ioobe.printStackTrace();
-        } 
+        }
 
         lista = new LinkedList<PresupuestoDTO>();
         for (i = 1; i < numLineas; i++) {

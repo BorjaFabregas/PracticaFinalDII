@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  * @author Fabregas
  */
 public class ControladorContactoUI implements ActionListener {
-
+    
     ContactoUI ui;
     ContactoDAO dao;
     ContactoDTO dto;
@@ -45,9 +45,10 @@ public class ControladorContactoUI implements ActionListener {
                 dto.setIdEstadoFK(ui.comboBoxEstados.getSelectedItem().toString());
                 dto.setTelefono(Integer.parseInt(ui.fijo.getText()));
                 dao.guardar(dto);
-                JOptionPane.showMessageDialog(ui,"Contacto Guardado");
+                JOptionPane.showMessageDialog(ui, "Contacto Guardado");
                 ui.dispose();
                 break;
+                
         }
         
     }

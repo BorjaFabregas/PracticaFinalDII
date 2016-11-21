@@ -109,7 +109,7 @@ public class ContactoDAO implements IContactoDAO {
 
     @Override
     public void borrar(String idContacto) {
-        Utilidades u = new Utilidades(new File("ficheros/contactos.txt"));
+        Utilidades u = new Utilidades(new File("ficheros/Contactos.txt"));
         u.eliminar(idContacto);
     }
 
