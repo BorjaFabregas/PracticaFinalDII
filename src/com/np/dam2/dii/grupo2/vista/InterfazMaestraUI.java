@@ -26,20 +26,7 @@ public class InterfazMaestraUI extends JFrame {
     public static String[] columnNames = {"ID", "CIF", "Email", "Direccion", "Telefono", "Movil", "Status"};
     // -
     public static String[][] data = {
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"},
-        {"002", "22222222", "empresa2@gmail.com", "Calle Isabela 2", "902202122", "652001122", "Activa"},
-        {"003", "33333333", "empresa3@gmail.com", "Calle Isabela 3", "902202133", "653001122", "Activa"},
-        {"004", "44444444", "empresa4@gmail.com", "Calle Isabela 4", "902202144", "654001122", "Activa"},
-        {"005", "55555555", "empresa5@gmail.com", "Calle Isabela 5", "902202155", "655001122", "Activa"},
-        {"006", "66666666", "empresa6@gmail.com", "Calle Isabela 6", "902202166", "656001122", "Activa"},
-        {"007", "77777777", "empresa7@gmail.com", "Calle Isabela 7", "902202177", "657001122", "Activa"},
-        {"008", "88888888", "empresa8@gmail.com", "Calle Isabela 8", "902202188", "658001122", "Activa"},};
+        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"}};
 
     public JTable table;
     public JLabel user, hora;

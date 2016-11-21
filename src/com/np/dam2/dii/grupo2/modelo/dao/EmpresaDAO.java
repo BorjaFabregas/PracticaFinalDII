@@ -113,36 +113,24 @@ public class EmpresaDAO implements IEmpresaDAO {
 
     @Override
     public List<EmpresaDTO> listar() {
-        LinkedList lista;
-        int numLineas = 0;
-        String linea = "";
-        File f = new File("ficheros/Empresas.txt");
-        FileReader fr = null;
-        BufferedReader br = null;
-        int i;
-        try {
-            fr = new FileReader(f);
-            br = new BufferedReader(fr);
+        Utilidades u = new Utilidades(new File("ficheros/Empresas.txt"));
+        LinkedList<EmpresaDTO> lista = new LinkedList();
+        int i = 0;
+        String[] registro = u.readLine(i);
 
-            linea = br.readLine();
-
-            while (linea != null) {
-                numLineas++;
-                linea = br.readLine();
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IndexOutOfBoundsException ioobe) {
-            ioobe.printStackTrace();
+        while (registro != null) {
+            EmpresaDTO empresa = new EmpresaDTO();
+            empresa.setIdEmpresa(registro[0]);
+            empresa.setRifEmpresa(registro[1]);
+            empresa.setEmail(registro[2]);
+            empresa.setDireccion(registro[3]);
+            empresa.setMovil(registro[4]);
+            empresa.setMovil(registro[5]);
+            empresa.setStatus(registro[6]);
+            lista.add(empresa);
+            i++;
+            registro = u.readLine(i);
         }
-
-        lista = new LinkedList<EmpresaDTO>();
-        for (i = 1; i < numLineas; i++) {
-            lista.add(this.leer(String.valueOf(i)));
-        }
-
         return lista;
     }
 }

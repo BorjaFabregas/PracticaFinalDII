@@ -49,7 +49,12 @@ public class ControladorLogin implements ActionListener{
                     login.dispose();
                     //Se lanzaría la siguiente interfaz
                     nombreUsuario = dto.getIdUsuario();
-                    ControladorInterfazMaestra cim = new ControladorInterfazMaestra();
+                    try{
+                        ControladorInterfazMaestra cim = new ControladorInterfazMaestra();
+                    }catch(NullPointerException npe){
+                        
+                    }
+                    
                 }else{
                     JOptionPane.showMessageDialog(login, "Usuario o contraseña incorrectos");
                 }

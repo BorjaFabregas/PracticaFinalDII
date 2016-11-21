@@ -109,5 +109,7 @@ public class EmpresaDTO {
                 + "\nTelefono: " + movil 
                 + "\nEstatus: " + status;
     }
+    
+    
 
 }

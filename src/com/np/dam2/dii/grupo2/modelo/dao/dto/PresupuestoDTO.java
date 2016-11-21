@@ -9,7 +9,7 @@ public class PresupuestoDTO {
 
     private String rifEmpresaPresupuesto;
 
-    private Date fecha;
+    private String fecha;
 
     private String status;
 
@@ -48,7 +48,7 @@ public class PresupuestoDTO {
     /**
      * @return the fecha
      */
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
@@ -83,7 +83,7 @@ public class PresupuestoDTO {
     /**
      * @param fecha the fecha to set
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

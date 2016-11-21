@@ -24,23 +24,34 @@ import java.util.logging.Logger;
  *
  * @author Grupo 2
  */
-public class OperacionCompraDAO implements IOperacionCompraDAO{
+public class OperacionCompraDAO implements IOperacionCompraDAO {
 
     @Override
     public void guardar(OperacionCompraDTO operacion) {
-         File f = new File("ficheros/OperacionesCompra.txt");
+        File f = new File("ficheros/OperacionesCompras.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
         try {
+
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {
+                while ((str = br.readLine()) != null) {
+                    id++;
+                }
+                br.close();
+            }
+
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(operacion.getIdOpCompra()+ "-" + operacion.getNumeroOpCompra()+"-"+operacion.getStatus()+"\n");
+            bw.write(id + "-" + operacion.getNumeroOpCompra() + "-" + operacion.getStatus() +"-"+ operacion.getIdPresupuestoFK() + "\n");
         } catch (IOException ex) {
-            Logger.getLogger(OperacionCompraDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 bw.close();
-                fw.close();  
+                fw.close();
             } catch (IOException io) {
                 io.printStackTrace();
             }
@@ -49,9 +60,9 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
 
     @Override
     public OperacionCompraDTO leer(String idOperacionCompra) {
- File f = new File("ficheros/OperacionesCompras.txt");
+        File f = new File("ficheros/OperacionesCompras.txt");
         String linea = "";
-        boolean esEncontrado=false;
+        boolean esEncontrado = false;
         FileReader fr = null;
         BufferedReader br = null;
         OperacionCompraDTO oCompra = new OperacionCompraDTO();
@@ -65,12 +76,12 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
                 atributos = linea.split("-");
                 id = atributos[0];
                 if (atributos[0].equalsIgnoreCase(idOperacionCompra)) {
-                    oCompra.setIdOpCompra(idOperacionCompra);               
+                    oCompra.setIdOpCompra(idOperacionCompra);
                     oCompra.setNumeroOpCompra(Integer.parseInt(atributos[1]));
                     oCompra.setStatus(atributos[2]);
                     oCompra.setIdPresupuestoFK(atributos[3]);
-                    
-                    esEncontrado=true;
+
+                    esEncontrado = true;
                 }
             }
         } catch (FileNotFoundException ex) {
@@ -90,7 +101,7 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
 
     @Override
     public void borrar(String idOperacionCOmpra) {
-         Utilidades u = new Utilidades(new File("ficheros/OperacionesCompras.txt"));
+        Utilidades u = new Utilidades(new File("ficheros/OperacionesCompras.txt"));
         u.eliminar(idOperacionCOmpra);
     }
 
@@ -101,7 +112,7 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
 
     @Override
     public List<OperacionCompraDTO> listar() {
-                LinkedList lista;
+        LinkedList lista;
         int numLineas = 0;
         String linea = "";
         File f = new File("ficheros/OperacionesCompras.txt");
@@ -122,9 +133,9 @@ public class OperacionCompraDAO implements IOperacionCompraDAO{
             Logger.getLogger(OperacionCompraDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(OperacionCompraDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }catch (IndexOutOfBoundsException ioobe){
+        } catch (IndexOutOfBoundsException ioobe) {
             ioobe.printStackTrace();
-        } 
+        }
 
         lista = new LinkedList<OperacionCompraDTO>();
         for (i = 1; i < numLineas; i++) {

@@ -33,19 +33,26 @@ public class PresupuestoDAO implements IPresupuestoDAO {
         File f = new File("ficheros/Presupuestos.txt");
         FileWriter fw = null;
         BufferedWriter bw = null;
+
         try {
+            //Obtencion ultimo id y autoincremento
+            int id = 1;
+            String str;
+            try (BufferedReader br = new BufferedReader(new FileReader(f))) {                
+                while((str=br.readLine())!=null){
+                    id++;
+                }
+                br.close();
+            }
+            
+
             fw = new FileWriter(f, true);
             bw = new BufferedWriter(fw);
-            bw.write(presupuesto.getIdPresupuesto() + "-" + presupuesto.getRifEmpresaPresupuesto() + "-" + presupuesto.getFecha().toString() + "-" + presupuesto.getStatus() + "-" + presupuesto.getPresupuesto() + "\n");
+            bw.write(id + "-" + presupuesto.getPresupuesto()+"-"+presupuesto.getFecha()+"-"+presupuesto.getStatus()+"-"+presupuesto.getIdEmpresaFK()+"\n");
+            bw.close();
+            fw.close();
         } catch (IOException ex) {
-            Logger.getLogger(PresupuestoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                bw.close();
-                fw.close();
-            } catch (IOException io) {
-                io.printStackTrace();
-            }
+            Logger.getLogger(PaisDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -53,7 +60,7 @@ public class PresupuestoDAO implements IPresupuestoDAO {
     public PresupuestoDTO leer(String idPresupuesto) {
         File f = new File("ficheros/Presupuestos.txt");
         String linea = "";
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
+        
         boolean esEncontrado = false;
         FileReader fr = null;
         BufferedReader br = null;
@@ -69,11 +76,10 @@ public class PresupuestoDAO implements IPresupuestoDAO {
                 id = atributos[0];
                 if (atributos[0].equalsIgnoreCase(idPresupuesto)) {
                     presupuesto.setIdPresupuesto(idPresupuesto);
-                    presupuesto.setRifEmpresaPresupuesto(atributos[1]);
-                    presupuesto.setFecha(formatoFecha.parse(atributos[2]));
+                    presupuesto.setFecha(atributos[2]);
                     presupuesto.setStatus(atributos[3]);
-                    presupuesto.setPresupuesto((atributos[4]));
-                    presupuesto.setIdEmpresaFK(atributos[5]);
+                    presupuesto.setPresupuesto((atributos[1]));
+                    presupuesto.setIdEmpresaFK(atributos[4]);
                     esEncontrado = true;
                 }
             }
@@ -81,8 +87,6 @@ public class PresupuestoDAO implements IPresupuestoDAO {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(EmpresaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(PresupuestoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 fr.close();

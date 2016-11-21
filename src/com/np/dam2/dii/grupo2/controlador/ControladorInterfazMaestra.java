@@ -129,7 +129,7 @@ public class ControladorInterfazMaestra implements ActionListener {
 
         interfazMaestra.cerrarSesion.addActionListener(this);
 
-        interfazMaestra.salir.addActionListener(this);
+        //interfazMaestra.salir.addActionListener(this);
 
         //Aqui irán todos los Listener 
     }
@@ -173,7 +173,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             //Presupuestos
             case "nuevoPresupuesto":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                ControladorPresupuestoUI controladorPresupuestoUI=new ControladorPresupuestoUI();
                 break;
             case "borrarPresupuesto":
                 presupuestoDAO = PresupuestoDAOFactory.getInstance().createPresupuestoDAO();
@@ -220,7 +220,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             //Equipos
             case "nuevoEquipo":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                ControladorEquipoUI controladorEquipoUI=new ControladorEquipoUI();
                 break;
             case "borrarEquipo":
                 equipoDAO = EquipoDAOFactory.getInstance().createEquipoDAO();
@@ -310,7 +310,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             //Compras
             case "nuevaCompra":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                ControladorOperacionCompraUI controladorOperacionCompraUI=new ControladorOperacionCompraUI();
                 break;
             case "borrarCompra":
                 compraDAO = OperacionCompraDAOFactory.getInstance().createOperacionCompraDAO();

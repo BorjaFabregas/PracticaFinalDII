@@ -3,15 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/controlador/ControladorContactoUI.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/dto/EquipoDTO.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/ficheros/Empresas.txt</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/factory/EmpresaDAOFactory.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/vista/InterfazMaestraUI.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/controlador/ControladorLogin.java</file>
             <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/controlador/ControladorInterfazMaestra.java</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/controlador/ControladorAuditoria.java</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/util/Utilidades.java</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/vista/EmpresaUI.java</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/ContactoDAO.java</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/ficheros/Contactos.txt</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/controlador/ControladorEmpresaUI.java</file>
-            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/vista/ContactoUI.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/EmpresaDAO.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/dto/EmpresaDTO.java</file>
+            <file>file:/Users/Fabregas/Documents/DAM%202/DII/Practica%20Final%20DII/PracticaFinalDII/src/com/np/dam2/dii/grupo2/modelo/dao/dto/OperacionCompraDTO.java</file>
         </group>
     </open-files>
 </project-private>
