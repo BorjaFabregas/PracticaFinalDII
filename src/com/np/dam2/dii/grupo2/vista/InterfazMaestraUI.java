@@ -20,15 +20,32 @@ import java.util.Date;
 import java.awt.GridBagConstraints;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
+import javax.swing.table.DefaultTableModel;
 
 public class InterfazMaestraUI extends JFrame {
 
-    public static String[] columnNames = {"ID", "CIF", "Email", "Direccion", "Telefono", "Movil", "Status"};
-    // -
-    public static String[][] data = {
-        {"001", "11111111", "empresa1@gmail.com", "Calle Isabela 1", "902202111", "651001122", "Activa"}};
+    public static DefaultTableModel model;
+    public static String[] columnNames = {"ID", "CIF", "Email", "Direccion", "Movil", "Status"};
+    
+    public static String[][] data = {{"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},
+    {"", "", "", "", "", "", ""},};
 
-    public JTable table;
+    public static JTable table;
     public JLabel user, hora;
     public JMenuBar menu;
     public JMenu menuRecepciones;
@@ -118,7 +135,7 @@ public class InterfazMaestraUI extends JFrame {
         north.add(hora, BorderLayout.EAST);
 
         user = new JLabel("Usuario");
-        user.setText("Usuario: " + ControladorLogin.nombreUsuario.toUpperCase());
+        //user.setText("Usuario: " + ControladorLogin.nombreUsuario.toUpperCase());
         user.setFont(new Font("Lucida Grande", Font.BOLD, 14));
         north.add(user, BorderLayout.WEST);
 

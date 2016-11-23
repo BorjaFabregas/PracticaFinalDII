@@ -77,10 +77,8 @@ public class EstadoDAO implements IEstadoDAO {
                     io.printStackTrace();
                 }
             }
-        } else {
-            
-            JOptionPane.showMessageDialog(new JOptionPane(), "El Estado que intentas guardar\n no esta asociado a ningun Pais");
-            
+        } else {            
+            JOptionPane.showMessageDialog(new JOptionPane(), "El Estado que intentas guardar\n no esta asociado a ningun Pais");            
         }
     }
 

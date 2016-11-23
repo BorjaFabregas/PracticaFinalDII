@@ -108,16 +108,22 @@ public class EmpresaDAO implements IEmpresaDAO {
 
     @Override
     public void actualizar(EmpresaDTO empresa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Utilidades u = new Utilidades(new File("ficheros/Empresas.txt"));
+        u.actualizar(empresa.getIdEmpresa(), empresa.toString(true));
     }
 
     @Override
     public List<EmpresaDTO> listar() {
-        Utilidades u = new Utilidades(new File("ficheros/Empresas.txt"));
+        Utilidades.fichero = new File("ficheros/Empresas.txt");
         LinkedList<EmpresaDTO> lista = new LinkedList();
-        int i = 0;
-        String[] registro = u.readLine(i);
-
+        int i = 1;
+        
+        String[] registro = Utilidades.readLine(i);
+        if (registro==null)
+            System.out.println("Registro null");
+                
+        
+        
         while (registro != null) {
             EmpresaDTO empresa = new EmpresaDTO();
             empresa.setIdEmpresa(registro[0]);
@@ -125,11 +131,11 @@ public class EmpresaDAO implements IEmpresaDAO {
             empresa.setEmail(registro[2]);
             empresa.setDireccion(registro[3]);
             empresa.setMovil(registro[4]);
-            empresa.setMovil(registro[5]);
-            empresa.setStatus(registro[6]);
+            empresa.setStatus(registro[5]);
+            System.out.println(empresa.toString(true));
             lista.add(empresa);
             i++;
-            registro = u.readLine(i);
+            registro = Utilidades.readLine(i);
         }
         return lista;
     }

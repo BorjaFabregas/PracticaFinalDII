@@ -13,6 +13,10 @@ public class EmpresaDTO {
     private String movil;
 
     private String status;
+    
+    public String toString(boolean actualizar){
+        return idEmpresa+"-"+rifEmpresa+"-"+email+"-"+direccion+"-"+movil+"-"+status;
+    }
 
     public EmpresaDTO() {
     }

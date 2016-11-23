@@ -32,13 +32,18 @@ import com.np.dam2.dii.grupo2.modelo.dao.factory.RecepcionDAOFactory;
 import com.np.dam2.dii.grupo2.modelo.dao.factory.SistemaOperativoDAOFactory;
 import com.np.dam2.dii.grupo2.vista.InterfazMaestraUI;
 import com.sun.javafx.event.EventDispatchTreeImpl;
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -130,7 +135,6 @@ public class ControladorInterfazMaestra implements ActionListener {
         interfazMaestra.cerrarSesion.addActionListener(this);
 
         //interfazMaestra.salir.addActionListener(this);
-
         //Aqui irán todos los Listener 
     }
 
@@ -148,11 +152,20 @@ public class ControladorInterfazMaestra implements ActionListener {
                 ControladorEmpresaUI controladorEmpresaUI = new ControladorEmpresaUI();
                 break;
             case "listarEmpresas":
-                /*empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
-                LinkedList lista = (LinkedList) empresaDAO.listar();
-                String[][] strArray;
-                strArray = (String[][]) lista.toArray();
-                InterfazMaestraUI.data = (strArray);*/
+
+                empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
+                
+                List<EmpresaDTO> lista = empresaDAO.listar();
+                
+                InterfazMaestraUI.columnNames = new String[]{"ID", "CIF", "Email", "Direccion", "Movil", "Status"};
+                for (int i = 0; i <= lista.size(); i++) {
+                    InterfazMaestraUI.data[i][0] = lista.get(i).getIdEmpresa();
+                    InterfazMaestraUI.data[i][1] = lista.get(i).getRifEmpresa();
+                    InterfazMaestraUI.data[i][2] = lista.get(i).getEmail();
+                    InterfazMaestraUI.data[i][3] = lista.get(i).getDireccion();
+                    InterfazMaestraUI.data[i][4] = lista.get(i).getMovil();
+                    InterfazMaestraUI.data[i][5] = lista.get(i).getStatus();
+                }
                 break;
             case "borrarEmpresa":
                 empresaDAO = EmpresaDAOFactory.getInstance().createEmpresaDAO();
@@ -162,7 +175,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 JOptionPane.showMessageDialog(interfazMaestra, "Empresa Borrada");
                 break;
             case "updateEmpresa":
-                JOptionPane.showMessageDialog(interfazMaestra, "Pendiente");
+                ControladorEmpresaUI ceui = new ControladorEmpresaUI("Actualizar");
                 //Para actualizar la empresa primero se hace buscar empresa y despues se lanza la interfaz con los paraetros llenos
                 break;
             case "buscarEmpresa":
@@ -173,7 +186,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             //Presupuestos
             case "nuevoPresupuesto":
-                ControladorPresupuestoUI controladorPresupuestoUI=new ControladorPresupuestoUI();
+                ControladorPresupuestoUI controladorPresupuestoUI = new ControladorPresupuestoUI();
                 break;
             case "borrarPresupuesto":
                 presupuestoDAO = PresupuestoDAOFactory.getInstance().createPresupuestoDAO();
@@ -220,7 +233,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             //Equipos
             case "nuevoEquipo":
-                ControladorEquipoUI controladorEquipoUI=new ControladorEquipoUI();
+                ControladorEquipoUI controladorEquipoUI = new ControladorEquipoUI();
                 break;
             case "borrarEquipo":
                 equipoDAO = EquipoDAOFactory.getInstance().createEquipoDAO();
@@ -310,7 +323,7 @@ public class ControladorInterfazMaestra implements ActionListener {
                 break;
             //Compras
             case "nuevaCompra":
-                ControladorOperacionCompraUI controladorOperacionCompraUI=new ControladorOperacionCompraUI();
+                ControladorOperacionCompraUI controladorOperacionCompraUI = new ControladorOperacionCompraUI();
                 break;
             case "borrarCompra":
                 compraDAO = OperacionCompraDAOFactory.getInstance().createOperacionCompraDAO();

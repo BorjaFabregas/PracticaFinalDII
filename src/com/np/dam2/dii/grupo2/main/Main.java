@@ -1,5 +1,6 @@
 package com.np.dam2.dii.grupo2.main;
 
+import com.np.dam2.dii.grupo2.controlador.ControladorInterfazMaestra;
 import com.np.dam2.dii.grupo2.controlador.ControladorLogin;
 
 /**
@@ -11,7 +12,8 @@ public class Main {
     public static void main(String[] args) {
 
         
-        ControladorLogin ui = new ControladorLogin();
+        //ControladorLogin ui = new ControladorLogin();
+        ControladorInterfazMaestra ui = new ControladorInterfazMaestra();
         
     }
 

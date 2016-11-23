@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 
 public class Utilidades {
 
-    private static File fichero;
+    public static File fichero;
 
     public Utilidades(File f) {
         fichero = f;
@@ -36,7 +36,7 @@ public class Utilidades {
 
             while (linea != null && linea.length() > 0 && !pkRegistro.equals(id)) {
                 //Si la linea contiene la PK que queremos eliminar NO se guarda
-                while (linea.charAt(i) != ';' && linea.length() > 1) {
+                while (linea.charAt(i) != '-' && linea.length() > 1) {
                     pkRegistro = pkRegistro + linea.charAt(i);
                     i++;
                 }
@@ -45,7 +45,7 @@ public class Utilidades {
                 linea = br.readLine();
             }
             if (linea != null) {
-                registro = linea.split(",");
+                registro = linea.split("-");
             }
         } catch (SecurityException se) {
             System.out.println("No tiene permisos para crear el fichero \"" + fichero.getPath() + "\"");
@@ -77,7 +77,7 @@ public class Utilidades {
                 cont++;
             }
             if (linea != null) {
-                registro = linea.split(",");
+                registro = linea.split("-");
             }
         } catch (SecurityException se) {
             System.out.println("No tiene permisos para crear el fichero \"" + fichero.getPath() + "\"");
